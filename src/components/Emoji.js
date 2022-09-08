@@ -1,8 +1,13 @@
 import React from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
 const Emoji = () => {
+
+const name = useRef("pugamuga")
+name.current = "evgeny"
+
   const [input, setInput] = useState(500);
   const [index, setIndex] = useState(0);
   const moons = ["🌑", "🌒", "🌓", "🌔", "🌕", "💥", "sosi","zhopy"];
@@ -34,6 +39,9 @@ const Emoji = () => {
           placeholder="0"
           className="h-[40px] rounded-full text-slate-900 px-3"
         />{" "}
+        <div>
+            {name.current}
+        </div>
       </div>
     </div>
   );

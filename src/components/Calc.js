@@ -24,11 +24,14 @@ const Calc = () => {
   };
 
   useEffect(() => {
-    console.log("useEffect is created");
+    const intervalId = setInterval(()=>{
+        console.log('2 sec')
+    },2000)
+
     return () => {
-      console.log("useEffect cleanup");
-    };
-  });
+        clearInterval(intervalId)
+    }
+  },[math]);
 
   return (
     <div className="flex flex-col justify-center items-center gap-y-5">
@@ -80,7 +83,6 @@ const Calc = () => {
           ? calculator(Number(firstInput), math, Number(secondInput))
           : 0}
       </h1>
-      {console.log("first")}
     </div>
   );
 };
