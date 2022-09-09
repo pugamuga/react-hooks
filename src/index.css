@@ -6,6 +6,6 @@
 
 @layer base {
   body {
-    @apply text-white bg-violet-400 leading-normal font-mono font-semibold p-4;
+    @apply text-white bg-violet-400 transition-all duration-500 leading-normal font-mono font-semibold p-4 scrollbar-hide;
   }
 }
