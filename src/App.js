@@ -1,14 +1,11 @@
 import AdvancedPart from "./components/AdvancedPart";
-import Books from "./components/Books";
-import { Hooks } from "./components/Hooks";
-import ReactUdemy from "./components/ReactUdemy";
+import TernaryOperator from "./components/TernaryOperator";
 
 function App() {
+
   return (
     <div>
-      {/* <ReactUdemy /> */}
-      {/* <Books /> */}
-      <AdvancedPart/>
+      <TernaryOperator/>
     </div>
   );
 }

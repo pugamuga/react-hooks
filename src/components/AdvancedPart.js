@@ -1,40 +1,40 @@
-import React from "react";
-import { useState } from "react";
-
-const peoples = ["puga", "muga", "evgeny", "easy"];
+import React, { useState } from "react";
+import { useEffect } from "react";
 
 const AdvancedPart = () => {
-  const [names, setNames] = useState(peoples);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const removeName = (i) => {
-    let newNames = names.filter((_, index) => {
-      return index !== i;
-    });
-
-    setNames(newNames);
+  const resize = () => {
+    return setWidth(window.innerWidth);
   };
+  useEffect(() => {
+    window.addEventListener("resize", resize);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  });
+
+  if (isError) {
+    return (
+      <div>
+        <div className="text-5xl">ERROR</div>
+      </div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div>
+        <div className="text-5xl">LOADING...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className=" flex flex-col items-center  ">
-      {names.map((name, i) => {
-        return (
-          <div key={i} className="relative">
-            <div className=" bg-slate-700 text-center w-[150px] p-2 mt-2 rounded-xl">
-              {name}
-            </div>
-            <button
-              onClick={() => {
-                removeName(i);
-              }}
-              className="right-[-40px] bottom-2 ring-2 ring-rose-400 
-        ring-offset-4 ring-offset-slate-600
-         bg-rose-500 rounded-full px-2 absolute"
-            >
-              remove
-            </button>
-          </div>
-        );
-      })}
+    <div>
+      <div className="text-5xl">{width}</div>
     </div>
   );
 };
