@@ -1,5 +1,5 @@
 import AdvancedPart from "./components/AdvancedPart";
-import Documentation from "./components/Documentation";
+import Context from "./components/Context";
 import NewLesson from "./components/NewLesson";
 import TernaryOperator from "./components/TernaryOperator";
 
@@ -9,7 +9,7 @@ function App() {
     <div>
       {/* <TernaryOperator/> */}
       {/* <NewLesson/> */}
-      <Documentation/>
+      <Context/>
     </div>
   );
 }
