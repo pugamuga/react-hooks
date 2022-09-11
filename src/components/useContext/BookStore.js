@@ -30,13 +30,18 @@ const BookStore = () => {
               {amountBooks == 1 ? "book" : "books"}
               📖
             </h1>
-            {amountBooks > 0 && <button
-            onClick={() => {
-                setAmountBooks(() => {
-                    return 0
-                })
-            }}
-            className="btn bg-rose-500 ml-4">Clear</button>}
+            {amountBooks > 0 && (
+              <button
+                onClick={() => {
+                  setAmountBooks(() => {
+                    return 0;
+                  });
+                }}
+                className="btn bg-rose-500 ml-4"
+              >
+                Clear
+              </button>
+            )}
           </div>
           <AllBooks />
         </div>
