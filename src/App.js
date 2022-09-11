@@ -1,5 +1,5 @@
 import AdvancedPart from "./components/AdvancedPart";
-import Context from "./components/Context";
+import Context from "./components/useReducer/Context";
 import NewLesson from "./components/NewLesson";
 import TernaryOperator from "./components/TernaryOperator";
 

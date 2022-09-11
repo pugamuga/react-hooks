@@ -1,55 +1,17 @@
 import React, { useState, useEffect, useReducer } from "react";
+import {
+  INCREMENT,
+  DECREMENT,
+  COLOR,
+  DELETE,
+  LIMIT,
+  BANNER,
+  BANNER_FALSE,
+} from "../useReducer/data/boiler_plate";
+import { reducer } from "../useReducer/data/reducer";
+import { increment, decrement } from "../useReducer/data/dispatch_functions";
 import { motion, AnimatePresence } from "framer-motion";
 import LimitCounter from "./LimitCounter";
-
-// create const, just for avoid mistakes
-
-const INCREMENT = "increment";
-const DECREMENT = "decrement";
-const COLOR = "change_color";
-const DELETE = "delete";
-const LIMIT = "limit";
-const BANNER = "banner";
-const BANNER_FALSE = "banner-false";
-
-// create functions for easeier way to put value on dispatch
-
-const increment = (payload) => {
-  return {
-    type: INCREMENT,
-    payload,
-  };
-};
-const decrement = (payload) => {
-  return {
-    type: DECREMENT,
-    payload,
-  };
-};
-
-// create reduser, where we put our cases. Case - just name of state.type,
-// need to return old state, theafore we write at first {...state, ___ }
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return { ...state, counter: state.counter + action.payload };
-    case DECREMENT:
-      return { ...state, counter: state.counter - action.payload };
-    case DELETE:
-      return { ...state, counter: 0 };
-    case LIMIT:
-      return { ...state, counter: 1000 };
-    case COLOR:
-      return { ...state, color: !state.color };
-    case BANNER:
-      return { ...state, limitBanner: true };
-    case BANNER_FALSE:
-      return { ...state, limitBanner: false };
-    default:
-      return { ...state };
-  }
-};
 
 const Context = () => {
   {
@@ -63,7 +25,7 @@ const Context = () => {
   });
 
   useEffect(() => {
-    if (state.counter >= 1000) {
+    if (state.counter >= 999) {
       dispatch({
         type: LIMIT,
       });
@@ -72,7 +34,7 @@ const Context = () => {
       });
     }
 
-    if (state.limitBanner && state.counter < 1000) {
+    if (state.limitBanner && state.counter < 999) {
       dispatch({
         type: BANNER_FALSE,
       });
@@ -82,9 +44,17 @@ const Context = () => {
   console.log(state.limitBanner);
 
   return (
-    <div className=" flex flex-col h-screen justify-center items-center">
-      <LimitCounter />
-      <div className=" bg-white rounded-md flex px-12 py-4 justify-between items-center w-1/3">
+    <div className=" flex flex-col h-screen justify-center items-center ">
+      <div className=" absolute top-[120px]">
+        <AnimatePresence>
+          {state.limitBanner && <LimitCounter />}
+        </AnimatePresence>
+      </div>
+      <div
+        className={`${
+          state.counter == 999 ? "opacity-50" : "opacity-100"
+        }  bg-white rounded-md flex px-12 py-4 transition-all duration-700 justify-between items-center w-1/3`}
+      >
         <div className="flex gap-x-2">
           <button
             onClick={() => {
@@ -106,7 +76,9 @@ const Context = () => {
         <div className=" flex flex-col items-center gap-y-5">
           <button
             onClick={() => {
-              dispatch(increment(100));
+              setTimeout(() => {
+                dispatch(increment(100));
+              }, 50);
             }}
             className="btn"
           >
@@ -145,7 +117,9 @@ const Context = () => {
         <div className="flex gap-x-2">
           <button
             onClick={() => {
-              dispatch(increment(1));
+              setTimeout(() => {
+                dispatch(increment(1));
+              }, 50);
             }}
             className="btn"
           >
@@ -153,7 +127,9 @@ const Context = () => {
           </button>
           <button
             onClick={() => {
-              dispatch(increment(2));
+              setTimeout(() => {
+                dispatch(increment(2));
+              }, 50);
             }}
             className="btn"
           >
