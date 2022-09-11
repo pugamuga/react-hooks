@@ -1,36 +1,79 @@
 import React, { useState, useEffect } from "react";
+import User from "./userHooks/User";
 
 const TernaryOperator = () => {
-  const [input, setInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
-  const [output, setOutput] = useState("");
+  const [user, setUser] = useState({ name: "", email: "", age: "" });
+  const [peoples, setPeoples] = useState([]);
+  console.log(peoples);
 
   return (
-    <div className=" flex flex-col w-[200px] gap-y-5">
-      <input
-      onChange={(e)=>{
-            setEmailInput(e.target.value)
-      }}
-      value={emailInput}
-        placeholder="email"
-        type="email"
-        className="text-slate-900 placeholder-slate-400"
-      />
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => {
-          setInput(e.target.value);
-        }}
-        placeholder="input"
-        className="text-slate-900 placeholder-slate-400"
-      />
-      <button
-      onClick={()=>{
-        setOutput(`User email: ${emailInput}, and user name: ${input}`)
-      }}
-      className=" bg-green-400 rounded-md py-1">Click</button>
-      <h1>{output}</h1>
+    <div className="flex justify-center items-center flex-col">
+      <div className=" bg-white w-2/3 flex flex-col mt-24 rounded-lg  items-center relative">
+        <div className="flex flex-col w-full justify-center my-12">
+          <div className="flex justify-center w-full items-center">
+            <h1 className=" text-violet-400 text-xl mr-3">Name: </h1>
+            <input
+              onChange={(e) => {
+                setUser({ ...user, name: e.target.value });
+              }}
+              value={user.name}
+              placeholder="Name"
+              type="text"
+              className="m-2 placeholder:text-white/50 bg-violet-400 rounded-full px-4 py-1 w-1/2"
+            />
+          </div>
+          <div className="flex justify-center w-full items-center">
+            <h1 className=" text-violet-400 text-xl">Email:</h1>
+
+            <input
+              onChange={(e) => {
+                setUser({ ...user, email: e.target.value });
+              }}
+              value={user.email}
+              placeholder="Email"
+              type="email"
+              className="m-2 placeholder:text-white/50 bg-violet-400 rounded-full px-4 py-1 w-1/2"
+            />
+          </div>
+          <div className="flex justify-center w-full items-center ">
+            <h1 className=" text-violet-400 text-xl mr-[20px]">Age:</h1>
+
+            <input
+              onChange={(e) => {
+                setUser({ ...user, age: e.target.value });
+              }}
+              value={user.age}
+              placeholder="Age"
+              type="number"
+              className="m-2 placeholder:text-white/50 bg-violet-400 rounded-full px-4 py-1 w-1/2"
+            />
+          </div>
+        </div>
+        <button
+          onClick={() => {
+            if (user.name && user.email && user.age) {
+              setPeoples([
+                ...peoples,
+                { name: user.name, email: user.email, age: user.age },
+              ]);
+              setUser({ name: "", email: "", age: "" });
+            }
+          }}
+          className=" bg-emerald-400 py-2 px-6 rounded-full absolute bottom-[-18px] shadow-md"
+        >
+          Add user
+        </button>
+      </div>
+      {peoples.map((item, index) => {
+        return (
+          <User
+            key={index}
+            name={item.name}
+            email={item.email}
+            age={item.age}
+          />
+        );
+      })}
     </div>
   );
 };
