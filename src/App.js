@@ -4,6 +4,7 @@ import NewLesson from "./components/NewLesson";
 import TernaryOperator from "./components/TernaryOperator";
 import BookStore from "./components/useContext/BookStore";
 import UseRef from "./components/UseRef/UseRef";
+import RefAsObject from "./components/UseRef/RefAsObject";
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
       {/* <NewLesson/> */}
       {/* <Context/> */}
       {/* <BookStore /> */}
-      <UseRef/>
+
+      {/* <UseRef/> */}
+      <RefAsObject />
     </div>
   );
 }
