@@ -3,6 +3,7 @@ import Context from "./components/useReducer/Context";
 import NewLesson from "./components/NewLesson";
 import TernaryOperator from "./components/TernaryOperator";
 import BookStore from "./components/useContext/BookStore";
+import UseRef from "./components/UseRef/UseRef";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       {/* <TernaryOperator/> */}
       {/* <NewLesson/> */}
       {/* <Context/> */}
-      <BookStore />
+      {/* <BookStore /> */}
+      <UseRef/>
     </div>
   );
 }
